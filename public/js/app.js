@@ -28,13 +28,6 @@ function crearSquads(squads) {
   });
 }*/
 
-
-$.getJSON("http://pokeapi.co/api/v2/pokemon/",
-function (response) {
-  var pokemons = response.results;
-  crearPokemons(pokemons);
-});
-
 // var xhr = new XMLHttpRequest();
 
 // xhr.onreadystatechange = function (e) {
@@ -52,55 +45,65 @@ function (response) {
 // xhr.open("GET", "http://pokeapi.co/api/v2/pokemon/");
 
 // xhr.send();
+$.getJSON("http://pokeapi.co/api/v2/pokemon/",
+function (response) {
+  var pokemons = response.results;
+  crearPokemons(pokemons);
+});
 
-function crearPokemons(pokemons) {
+function crearPokemons(pokemons){
   var ul = document.getElementById("pokemons");
 
-
-  pokemons.forEach(function (pokemon) {
+  pokemons.forEach(function(pokemon){
     var li = document.createElement("li");
 
-
-  // li.click(info);
-
-  // function info(){
-  //   $.getJSON(pokemon.url, function (response){
-  //     var abilities = response.abilities;
-  //   });
-
-      var pokePlantilla = '<div class="col s3">' + '<div class="card">' +
-      '<div class="card-image waves-effect waves-block waves-light">' +
-      '<img class="activator" src="assets/img/' + pokemon.name + '.png">' +
-      '</div>' + '<div class="card-content">' +
-      '<span class="card-title activator grey-text text-darken-4">' + pokemon.name + '<i class="material-icons right">more_vert</i></span>' +
-      '<p><a href="#">Info</a></p>' + '</div>' +
-      '<div class="card-reveal">' +
-      '<span class="card-title grey-text text-darken-4">' + pokemon.url + '<i class="material-icons right">close</i></span>' +
-      '<p></p>' +
-      '</div>' + '</div>' + '</div>';
-
-      $("#aqui").append(pokePlantilla);
-    // }
-
-
-
-
+    $.getJSON(pokemon.url, function (response){
+      var abilities = response.abilities;
+      habilidades.click(pokemons);
     });
 
 
+    // pokemon.click(info);
+    //
+    // function info(pokemon){
+    //
+    // });
+
+    var pokePlantilla = '<div class="col s3">' + '<div class="card">' +
+    '<div class="card-image waves-effect waves-block waves-light">' +
+    '<img class="activator" src="assets/img/' + pokemon.name + '.png" height="300">' +
+    '</div>' + '<div class="card-content">' +
+    '<span class="card-title activator grey-text text-darken-4">' + pokemon.name + '<i class="material-icons right">more_vert</i></span>' +
+    '<p><a href="#">Info</a></p>' + '</div>' +
+    '<div class="card-reveal">' +
+    '<span class="card-title grey-text text-darken-4">' + pokemon.abilities + '<i class="material-icons right">close</i></span>' +
+    '<p></p>' +
+    '</div>' + '</div>' + '</div>';
+
+    $("#aqui").append(pokePlantilla);
+  });
 
 
-    //li.textContent = pokemon.name;
-
-    //ul.appendChild(li);
+}
 
 
 
 
 
-$(document).ready(function(){
-  console.log("LALALALA");
-  //$("#aqui").html(pokePlantilla);
-})
-
-};
+// function crearPokemons(pokemons) {
+//
+//
+//   pokemons.forEach(function (pokemon) {
+//     var li = document.createElement("li");
+//
+//
+//   pokemon.click(info);
+//
+//   function info(){
+//     $.getJSON(pokemon.url, function (response){
+//       var abilities = response.abilities;
+//     });
+//
+//
+//   };
+// };
